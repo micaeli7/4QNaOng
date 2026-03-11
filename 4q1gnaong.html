@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+* {
+    font-family: Varela round, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+body{
+font-family: Arial;
+padding:20px;
+background-image: linear-gradient(45deg, #ffe5ec, #ffc2d1, #ffb3c6, #ff8fab, #fb6f92);
+
+}
+
+form{
+display:flex;
+flex-direction:column;
+width:250px;
+gap:8px;
+margin-bottom:30px;
+background-color: white;
+align-content: center;
+
+}
+
+input[type="radio"]{
+display:none;
+}
+
+.stars{
+display:flex;
+flex-direction:row-reverse;
+justify-content:flex-end;
+}
+
+.stars label{
+font-size:25px;
+cursor:pointer;
+color:gray;
+}
+
+input[type="radio"]:checked ~ label{
+color:gold;
+}
+
+table{
+    margin: 0 auto;
+border-collapse:collapse;
+width:600px;
+background-color: white;
+font-style: oblique;
+border-style:dashed;
+border-color: #ffb3c6;
+border-radius: 25px;
+}
+
+th, td{
+border:1px solid black;
+padding:8px;
+text-align:center;
+}
+
+th{
+background-color:#f2f2f2;
+color:#fb6f92;
+font-weight: bold;
+}
+
+td {
+    background-color: #ffe5ec;
+}
+
+.theform {
+margin: 0 auto;
+        padding: 24px;
+        background-color: #fff;
+        border-radius: 25px;
+        height: 90vh;
+        width: 85vh;
+        border-style:dashed;
+        border-color:#ffb3c6;
+        font-style: oblique;
+
+}
+button {
+            background-color:#ffc2d1;
+            border-radius: 5px;
+        }
+        label {
+            color: #fb6f92;
+            font-weight: 525;
+        }
+        input, textarea, select {
+            border-radius: 5px;
+            background-color:#ffe5ec;
+            border-color: #ff8fab;
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+        }
+
+</style>
+</head>
+
+<body>
+
+<h1>CS3 Q4 1st Graded Exercise 𖹭.ᐟ</h1>
+
+<div class="theform">
+<form id="form">
+
+<label>Title</label>
+<input id="title" required>
+
+<label>Year</label>
+<input id="year" required>
+
+<label>Genre</label>
+<select id="genre" required>
+<option value="romance">Romance</option>
+<option value="horror">Horror</option>
+<option value="action">Action</option>
+<option value="comedy">Comedy</option>
+</select>
+
+<label>Rating</label>
+
+<div class="stars">
+<input type="radio" id="star5" name="rating" value="5">
+<label for="star5">★</label>
+
+<input type="radio" id="star4" name="rating" value="4">
+<label for="star4">★</label>
+
+<input type="radio" id="star3" name="rating" value="3">
+<label for="star3">★</label>
+
+<input type="radio" id="star2" name="rating" value="2">
+<label for="star2">★</label>
+
+<input type="radio" id="star1" name="rating" value="1">
+<label for="star1">★</label>
+</div>
+
+<button type="submit">Add Movie</button>
+
+</form>
+</div>
+<h1>Movie List</h1>
+
+<table id="movieTable">
+
+<thead>
+<tr>
+<th>Title</th>
+<th>Year</th>
+<th>Genre</th>
+<th>Rating</th>
+</tr>
+</thead>
+
+<tbody id="movieBody">
+</tbody>
+
+</table>
+
+<script>
+
+const form = document.getElementById("form");
+const movieBody = document.getElementById("movieBody");
+
+let movies = JSON.parse(localStorage.getItem("movies")) || [];
+
+displayMovies();
+
+form.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const title = document.getElementById("title").value;
+const year = document.getElementById("year").value;
+const genre = document.getElementById("genre").value;
+
+const rating = document.querySelector('input[name="rating"]:checked').value;
+
+const movie = {
+title: title,
+year: year,
+genre: genre,
+rating: rating
+};
+
+movies.push(movie);
+
+localStorage.setItem("movies", JSON.stringify(movies));
+
+displayMovies();
+
+form.reset();
+
+});
+
+function displayMovies(){
+
+movieBody.innerHTML = "";
+
+movies.forEach(movie => {
+
+const row = document.createElement("tr");
+
+row.innerHTML =
+"<td>" + movie.title + "</td>" +
+"<td>" + movie.year + "</td>" +
+"<td>" + movie.genre + "</td>" +
+"<td>" + "⭐".repeat(movie.rating) + "</td>";
+
+movieBody.appendChild(row);
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
