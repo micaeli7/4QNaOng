@@ -56,18 +56,21 @@
 - Add in css ```position: relative; top: 20px; left: 20px;``` to .sidebar.
 
 - Guided Question: What changed compared to the default static positioning? Try to give different values to top and left or you can change it to bottom, right.
+- Answer: Default static positioning always places elements to the uppermost left part of the screen. Applying relative positioning allows you to change the position of the sidebar relative to the top, bottom, right and left of the viewport.
 
 ### Step 2 (Fixed):
 
 - Add in css ```position: fixed; bottom: 0; width: 100%;``` to .footer.
 
 - Guided Question: What happens when you scroll the page? Why does the footer behave differently from position relative?
+- Answer: The footer stays at the bottom. It behaves differently from position relative because fixed makes the element that it's applied to stay where it's positioned no matter how much you scroll, relative is affected by scrolling.
 
 ### Step 3 (Absolute):
 
 - Add in css ```position: absolute; top: 66px; left: 200px;``` to .content.
 
 - Guided Question: What is the effect of position: absolute on an element? How is it different from fixed?
+- Answer: position: absolute changes the position of an element based on its most recently positioned ancestor. Fixed positioning changes the position based on the viewport, and the element stays in its position even when you scroll, while absolute moves with the page when you scroll.
 
 ### Step 4 : (Absolute)
 
@@ -87,6 +90,7 @@
 - Give .content a z-index: 1.
 
 - Guided Question: Why does the notice appear on top of the content? What happens if you swap the z‑index values?
+- Answer: The notice appeared on top of the content because it has a higher z-index than the content, z-index affects the layering or the stacking of the elements, moving an element further to the front or to the back. If the z-index values are swapped, the content will cover the notice.
 
 - Challenge: 
     * What changes that you have to do on the code that will position .notice box on the top right corner of the .content box? Please write the code on paper as well (both html and css on the part of .notice and .content).
