@@ -84,7 +84,7 @@ position: relative; top: 20px; left: 20px;``` to .sidebar.
     padding: 10px;
     z-index: 2;
 }
-
+```
 - Give .content a z-index: 1.
 
 - Guided Question: Why does the notice appear on top of the content? What happens if you swap the z‑index values?
